@@ -1,0 +1,37 @@
+package com.main;
+
+import java.util.List;
+import com.database.ManytoMany;
+import com.database.OnetoMany;
+import com.database.OnetoOne;
+import com.jdbc.Author;
+import com.jdbc.Student;
+import com.jdbc.Classes;
+
+public class Retrieve {
+
+	public static void main(String[] args) {
+		System.out.println("-----------Student Records-----------");
+		List<Student> std = OnetoOne.getStudent();
+		for (Student s : std)
+			System.out.println(s);
+
+		Student std1 = new Student(20, "John", "2017-08-09", "male");
+		Student std2 = new Student(21, "John", "2016-08-09", "male");
+		System.out.println("-----------Equals method with Student id-----------");
+		System.out.println(std1.equals(std2));
+
+		System.out.println();
+		System.out.println("-----------Author and accociated Courses-----------");
+		List<Author> author = OnetoMany.getAuthorData();
+		for (Author a : author)
+			System.out.println(a);
+
+		System.out.println();
+		System.out.println("-----------Professor accociated with Classes-----------");
+		List<Classes> classes = ManytoMany.getClasses();
+		for (Classes c : classes)
+			System.out.println(c);
+	}
+
+}
